@@ -5,6 +5,8 @@ title1="Global Earthquake Data"
 st.title(title1)
 st.write("Comprehensive dataset of global earthquakes with key attributes for analysis: https://www.kaggle.com/datasets/shreyasur965/recent-earthquakes")
 eq_data=pd.read_csv("/home/hudjo712/ProAI/earthquakes.csv")
+eq_frame=pd.DataFrame(eq_data)
+st.dataframe(eq_frame)
 
 title2="Magnitude"
 st.title(title2)
@@ -15,13 +17,12 @@ st.write(f'Max:{eq_data['magnitude'].max()}')
 title3="Network"
 st.title(title3)
 network_list=eq_data['net'].unique()
-eq_numbers=eq_data['id'].value_counts().reset_index()
-st.write("Network")
+eq_numbers=eq_data['net'].value_counts().reset_index()
 selected_Network=st.selectbox('Network',network_list)
 df_network=eq_data[eq_data['net']==selected_Network]
-st.write(f'The number of earthquakes for {selected_Network}:{df_network['id'].count}')
+st.write(f'The number of earthquakes for {selected_Network}:{df_network['net'].count()}')
 
 title4="Number of earthquakes by network"
 st.title(title4)
-eq_numbers.columns=['title','id']
-st.bar_chart(eq_numbers.set_index('title'))
+eq_numbers.columns=['net','Count']
+st.bar_chart(eq_numbers.set_index('net'))
