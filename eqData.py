@@ -1,5 +1,7 @@
 import pandas as pd
 import streamlit as st
+import os
+
 
 title1="Global Earthquake Data"
 st.title(title1)
@@ -26,3 +28,7 @@ title4="Number of earthquakes by network"
 st.title(title4)
 eq_numbers.columns=['net','Count']
 st.bar_chart(eq_numbers.set_index('net'))
+
+st.write(os.getcwd())
+
+
