@@ -6,7 +6,7 @@ import os
 title1="Global Earthquake Data"
 st.title(title1)
 st.write("Comprehensive dataset of global earthquakes with key attributes for analysis: https://www.kaggle.com/datasets/shreyasur965/recent-earthquakes")
-eq_data=pd.read_csv(f"{os.getcwd()}earthquakes.csv")
+eq_data=pd.read_csv("https://github.com/HudJo712/ProAI/blob/main/earthquakes.csv")
 eq_frame=pd.DataFrame(eq_data)
 st.dataframe(eq_frame)
 
@@ -26,6 +26,7 @@ st.write(f'The number of earthquakes for {selected_Network}:{df_network['net'].c
 
 title4="Number of earthquakes by network"
 st.title(title4)
+eq_numbers=eq_data['net'].value_counts().reset_index()
 eq_numbers.columns=['net','Count']
 st.bar_chart(eq_numbers.set_index('net'))
 
