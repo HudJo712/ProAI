@@ -6,7 +6,7 @@ import os
 title1="Global Earthquake Data"
 st.title(title1)
 st.write("Comprehensive dataset of global earthquakes with key attributes for analysis: https://www.kaggle.com/datasets/shreyasur965/recent-earthquakes")
-eq_data=pd.read_csv("https://raw.github.com/HudJo712/ProAI/blob/main/earthquakes.csv")
+eq_data=pd.read_csv("https://raw.github.com/HudJo712/ProAI/main/earthquakes.csv")
 eq_frame=pd.DataFrame(eq_data)
 st.dataframe(eq_frame)
 
