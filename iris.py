@@ -19,7 +19,7 @@ def display_data(data_df):
     st.write("And here are the first 5 data rows:")
     st.write(data_df.head())
     st.write("And here are some basic statistics:")
-    st.write(get_data(data_df).describe())
+    st.write(get_data().describe())
     st.write('Data distributions')
     for col in COLUMN_NAMES:
         fig, ax = plt.subplots()

@@ -5,8 +5,34 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
-#@st.cache_data
+@st.cache_data
+def read_files():
+    if FileNotFoundError or pd.errors.EmptyDataError or pd.errors.ParserError:
+        st.stop
+    else:    
+        return pd.read_csv("/home/hudjo712/ProAI/last_names.csv"),pd.read_csv("/home/hudjo712/ProAI/first_names.csv"),pd.read_csv("/home/hudjo712/ProAI/subjects.csv")
+def regenerate_data(num_students,first_names_df,last_names_df,subjects_df,num_subjects,num_grades_per_stubject,min_grade,max_grade):
+    """student_list=[['Student ID'],['Name'],['Subject'],['Grade']]
+    for x in num_students:
+        student_list['Student ID'].append(np.arange(1,num_students+1))
+        student_list['First name'].append(random.choice(first_names_df['First name'].tolist())+" "+random.choice(last_names_df['Last name'].tolist()))
+    """
+    student_ids=np.arange(1,num_students+1)
+    repeated_ids=np.repeat(student_ids, num_subjects*num_grades_per_stubject)
+    first_names=first_names_df.values.flatten().tolist()
+    last_names=last_names_df.values.flatten().tolist()
+    student_names=[f"{random.choice(first_names)} {random.choice(last_names)}" for x in range(num_students)]
+    subjects=subjects_df.values.flatten().tolost()
+    grades=[np.random.randint for x in range(num_students)]
+    sorted_student_names=sorted(student_names,key=lambda name: name.split()[-1])
+    repeated_student_names=np.repeat(sorted_student_names,num_students*num_grades_per_stubject)
+    repeated_subjects=np.title(np.repeat(subjects[:num_subjects],num_grades_per_stubject), num_students)
+    grades=[[random.randint(min_grade,max_grade)for x in range(num_grades_per_stubject)] for x in range(num_students*num_subjects)]
+    flattened_grades=np.array(grades).flatten()
+    data={'Student ID':repeated_ids,'Name':repeated_student_names,'Subject':repeated_subjects,'Grade':flattened_grades}
+    generated_df=pd.DataFrame(data)
+    return generated_df
+"""#@st.cache_data
 def lastName():
     return pd.read_csv("/home/hudjo712/ProAI/last_names.csv")
 #@st.cache_data
@@ -68,3 +94,4 @@ st.dataframe(student_data)
 # Placeholder for download functionality
 if dlButton:
     st.write("Download functionality is not implemented yet.")
+"""
