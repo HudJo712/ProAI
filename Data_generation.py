@@ -27,8 +27,8 @@ def read_files():
         st.stop()
 def regenerate_data(num_students, first_names_df, last_names_df, subjects_df, num_subjects, num_grades_per_subject, min_grade, max_grade):
     student_ids = np.arange(1, num_students + 1)
-    first_names = first_names_df.values.flatten().tolist()
-    last_names = last_names_df.values.flatten().tolist()
+    first_names = first_names_df.values.flatten()
+    last_names = last_names_df.values.flatten()
     student_names = [f"{random.choice(first_names)} {random.choice(last_names)}" for _ in range(num_students)]
     sorted_student_names = sorted(student_names, key=lambda name: name.split()[-1])
     repeated_ids = np.repeat(student_ids, num_subjects * num_grades_per_subject)
