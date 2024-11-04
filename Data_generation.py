@@ -52,7 +52,7 @@ def plot_grade_distribution(df):
     return fig
 def plot_kde(df, min_grade, max_grade):
     fig, ax = plt.subplots()
-    sns.kdeplot(data=df, x="Grade", ax=ax, fill=True, color='skyblue', alpha=0.5)  # fill=True for density area
+    sns.kdeplot(data=df, x="Grade", hue='Name', fill=True, legend=False) 
     ax.set_xlim(min_grade, max_grade)
     ax.set_ylabel("Density")
     ax.set_xlabel("Grade")
